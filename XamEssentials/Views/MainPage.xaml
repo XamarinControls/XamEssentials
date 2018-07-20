@@ -1,5 +1,41 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XamEssentials.Views.MainPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converters="clr-namespace:XamEssentials.Converters"
+             x:Class="XamEssentials.Views.MainPage">
+      <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConnectivityColorConverter x:Key="ConnectivityColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Padding="20" BackgroundColor="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <Label Text="Device Information" FontSize="Medium"/>
+            <Label Text="{Binding DeviceBrandText}" FontSize="Small"/>
+            <Label Text="{Binding DeviceModelText}" FontSize="Small"/>
+            <Label Text="{Binding DeviceNameText}" FontSize="Small"/>
+            <Label Text="{Binding DevicePlatformText}" FontSize="Small"/>
+        </StackLayout>
+        <StackLayout Grid.Row="1">
+            <Label Text="Internet Connectivity" FontSize="Medium"/>
+            <Grid BackgroundColor="{Binding Connectivity, Converter={StaticResource ConnectivityColor}}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding ConnectivityText}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+        </StackLayout>
+        <StackLayout Grid.Row="2">
+            <Label Text="Text to Speech" FontSize="Medium"/>
+            <Entry Text="{Binding TextToSpeak}" Placeholder="Enter any text..."/>
+            <Button Command="{Binding SpeakCommand}" Text="Speak" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+            <Label Grid.Row="3" Text="Compass" FontSize="Medium"/>
+            <Image Grid.Row="4" Source="compass.png" HeightRequest="200" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/> 
+            <Image Grid.Row="4" Rotation="{Binding Heading}" Source="arrow.png" HeightRequest="200" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+    </Grid>
 </ContentPage>

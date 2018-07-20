@@ -147,7 +147,12 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>0.8.0-preview</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.1.0.637273</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -155,5 +160,10 @@
       <Project>{95679B32-FA19-48DC-865D-CFE07157B1AC}</Project>
       <Name>XamEssentials</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img.jpg" />
+    <BundleResource Include="Resources\arrow.png" />
+    <BundleResource Include="Resources\compass.png" />
   </ItemGroup>
 </Project>
